@@ -1,0 +1,130 @@
+{{!
+    @template block_student_attendance/carousel
+
+    Student attendance carousel.
+}}
+<div id="{{uniqid}}" class="att-block-wrapper">
+    {{#hascards}}
+        <div class="att-carousel" data-region="att-carousel" tabindex="0">
+            {{#cards}}
+                <article class="att-card card">
+                    <div class="card-body">
+                        <div class="att-card-header">
+                            <div class="att-card-title-wrap">
+                                <h6 class="att-card-course">{{course}}</h6>
+                                <div class="att-card-activity">{{strings.activity}}: {{activity}}</div>
+                            </div>
+                            {{#haspercentage}}
+                                <div class="att-percent" aria-label="{{percentage}}%">
+                                    <span class="att-percent-value">{{percentage}}%</span>
+                                </div>
+                            {{/haspercentage}}
+                        </div>
+
+                        {{#haspercentage}}
+                            <div class="progress att-progress mt-2 mb-3" aria-hidden="true">
+                                <div class="progress-bar" style="width: {{percentage}}%"></div>
+                            </div>
+                        {{/haspercentage}}
+
+                        <div class="att-summary">
+                            <div class="att-summary-item">
+                                <span class="att-summary-number">{{recorded}}</span>
+                                <span class="att-summary-label">{{strings.sessionsrecorded}}</span>
+                            </div>
+                            <div class="att-badges">
+                                {{#statuscounts}}
+                                    <span class="badge {{class}}">{{label}}: {{count}}</span>
+                                {{/statuscounts}}
+                            </div>
+                        </div>
+
+                        <div class="att-last">
+                            <div class="att-section-title">{{strings.lastrecords}}</div>
+                            <ul class="att-record-list">
+                                {{#lastrecords}}
+                                    <li class="att-record">
+                                        <span class="att-record-date">{{date}}</span>
+                                        <span class="badge {{class}} att-record-status">{{status}}</span>
+                                        {{#hasremarks}}
+                                            <span class="att-remark" title="{{remarks}}">{{remarks}}</span>
+                                        {{/hasremarks}}
+                                    </li>
+                                {{/lastrecords}}
+                            </ul>
+                        </div>
+
+                        <a class="btn btn-secondary btn-sm att-card-action" href="{{url}}">{{strings.viewattendance}}</a>
+                    </div>
+                </article>
+            {{/cards}}
+        </div>
+
+        <div class="att-dots" data-region="att-dots">
+            {{#cards}}
+                <button type="button" class="att-dot" data-action="att-scroll-card"></button>
+            {{/cards}}
+        </div>
+    {{/hascards}}
+
+    {{^hascards}}
+        <div class="att-empty">{{emptytext}}</div>
+    {{/hascards}}
+</div>
+
+{{#js}}
+(function() {
+    var root = document.getElementById('{{uniqid}}');
+    if (!root) {
+        return;
+    }
+
+    var carousel = root.querySelector('[data-region="att-carousel"]');
+    var cards = root.querySelectorAll('.att-card');
+    var dots = root.querySelectorAll('[data-action="att-scroll-card"]');
+
+    if (!carousel || cards.length === 0 || dots.length === 0) {
+        return;
+    }
+
+    var setActive = function(index) {
+        dots.forEach(function(dot) {
+            dot.classList.remove('att-dot-active');
+            dot.setAttribute('aria-current', 'false');
+        });
+        if (dots[index]) {
+            dots[index].classList.add('att-dot-active');
+            dots[index].setAttribute('aria-current', 'true');
+        }
+    };
+
+    dots.forEach(function(dot, index) {
+        dot.setAttribute('aria-label', String(index + 1));
+        dot.addEventListener('click', function() {
+            var card = cards[index];
+            if (card) {
+                carousel.scrollTo({left: card.offsetLeft - carousel.offsetLeft, behavior: 'smooth'});
+                setActive(index);
+            }
+        });
+    });
+
+    carousel.addEventListener('scroll', function() {
+        var active = 0;
+        var minDiff = Infinity;
+        var carouselLeft = carousel.offsetLeft;
+        var scrollLeft = carousel.scrollLeft;
+
+        cards.forEach(function(card, index) {
+            var diff = Math.abs((card.offsetLeft - carouselLeft) - scrollLeft);
+            if (diff < minDiff) {
+                minDiff = diff;
+                active = index;
+            }
+        });
+        setActive(active);
+    });
+
+    setActive(0);
+})();
+{{/js}}

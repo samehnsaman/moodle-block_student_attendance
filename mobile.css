@@ -1,0 +1,110 @@
+.block-student-attendance-mobile {
+    display: block;
+}
+
+.block-student-attendance-mobile .att-mobile-carousel {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 4px 12px 12px;
+    scroll-snap-type: x mandatory;
+}
+
+.block-student-attendance-mobile .att-mobile-card {
+    flex: 0 0 calc(100% - 16px);
+    margin: 0;
+    scroll-snap-align: start;
+}
+
+.block-student-attendance-mobile ion-card-title {
+    font-size: 1rem;
+    line-height: 1.3;
+}
+
+.block-student-attendance-mobile ion-card-subtitle {
+    white-space: normal;
+}
+
+.block-student-attendance-mobile .att-mobile-percent {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.block-student-attendance-mobile .att-mobile-percent strong {
+    color: var(--ion-color-primary, #0f6cbf);
+    font-size: 1.25rem;
+}
+
+.block-student-attendance-mobile .att-mobile-recorded {
+    align-items: baseline;
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.block-student-attendance-mobile .att-mobile-recorded strong {
+    font-size: 1.2rem;
+}
+
+.block-student-attendance-mobile .att-mobile-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.block-student-attendance-mobile ion-badge.att-badge-present {
+    --background: #28a745;
+    --color: #fff;
+}
+
+.block-student-attendance-mobile ion-badge.att-badge-absent {
+    --background: #dc3545;
+    --color: #fff;
+}
+
+.block-student-attendance-mobile ion-badge.att-badge-late {
+    --background: #ffc107;
+    --color: #212529;
+}
+
+.block-student-attendance-mobile ion-badge.att-badge-excused {
+    --background: #17a2b8;
+    --color: #fff;
+}
+
+.block-student-attendance-mobile ion-badge.att-badge-other {
+    --background: #6c757d;
+    --color: #fff;
+}
+
+.block-student-attendance-mobile .att-mobile-section-title {
+    color: var(--ion-color-medium, #666);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0 0 6px;
+}
+
+.block-student-attendance-mobile .att-mobile-records {
+    margin-bottom: 12px;
+}
+
+.block-student-attendance-mobile .att-mobile-records ion-item {
+    --padding-start: 0;
+}
+
+.block-student-attendance-mobile .att-mobile-records h3 {
+    font-size: 0.95rem;
+    margin-top: 2px;
+}
+
+.block-student-attendance-mobile .att-mobile-remark {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.block-student-attendance-mobile .att-mobile-empty {
+    margin: 0 12px;
+}

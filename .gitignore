@@ -1,0 +1,7 @@
+.DS_Store
+._*
+__MACOSX/
+
+# Generated Moodle plugin package artifacts.
+student_attendance/
+student_attendance.zip

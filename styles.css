@@ -1,0 +1,214 @@
+/* ============================================================
+   block_student_attendance — Carousel Card Styles
+   Compatible with Moodle 4.0+ (Boost theme)
+   ============================================================ */
+
+.att-block-wrapper {
+    overflow: hidden;
+}
+
+/* Horizontal scroll-snap carousel */
+.att-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.75rem;
+    padding: 0.25rem 0.1rem 0.5rem;
+    scrollbar-width: none;
+}
+.att-carousel::-webkit-scrollbar { display: none; }
+
+.att-card {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    border-radius: 0.5rem;
+    min-width: 0;
+}
+
+.att-card .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.att-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.att-card-title-wrap {
+    min-width: 0;
+}
+
+.att-card-course {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+
+.att-card-activity {
+    color: #6a737b;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    margin-top: 0.2rem;
+    overflow-wrap: anywhere;
+}
+
+.att-percent {
+    align-items: center;
+    border: 1px solid #d7dee5;
+    border-radius: 0.375rem;
+    display: inline-flex;
+    flex: 0 0 auto;
+    min-height: 2rem;
+    padding: 0.2rem 0.45rem;
+}
+
+.att-percent-value {
+    color: #0f6cbf;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.att-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.att-summary-item {
+    align-items: baseline;
+    display: flex;
+    gap: 0.35rem;
+}
+
+.att-summary-number {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.att-summary-label,
+.att-section-title {
+    color: #5d6873;
+    font-size: 0.8125rem;
+}
+
+.att-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+/* Stat badges */
+.att-badge-present { background-color: var(--success, #28a745); color: #fff; }
+.att-badge-absent  { background-color: var(--danger, #dc3545); color: #fff; }
+.att-badge-late    { background-color: var(--warning, #ffc107); color: #212529; }
+.att-badge-excused { background-color: var(--info, #17a2b8); color: #fff; }
+.att-badge-other   { background-color: var(--secondary, #6c757d); color: #fff; }
+
+.att-badges .badge {
+    font-size: 0.75rem;
+    padding: 0.3em 0.55em;
+    white-space: normal;
+    text-align: left;
+}
+
+/* Progress bar */
+.att-progress {
+    height: 8px;
+    border-radius: 4px;
+}
+
+.att-last {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.att-record-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.att-record {
+    align-items: center;
+    border-top: 1px solid #edf0f2;
+    display: grid;
+    gap: 0.4rem;
+    grid-template-columns: minmax(7.5rem, 1fr) auto minmax(0, 1fr);
+    min-height: 2rem;
+    padding: 0.4rem 0;
+}
+
+.att-record:first-child {
+    border-top: 0;
+}
+
+.att-record-date {
+    color: #2f3a43;
+    font-size: 0.8125rem;
+    min-width: 0;
+}
+
+.att-record-status {
+    justify-self: start;
+}
+
+/* Last-5 remark truncation */
+.att-remark {
+    color: #5d6873;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+/* Dot navigation */
+.att-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 0.5rem;
+}
+.att-dot {
+    border: 0;
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: 50%;
+    background: #adb5bd;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.att-dot-active {
+    background: #0f6cbf;
+}
+
+.att-card-action {
+    align-self: flex-start;
+}
+
+.att-empty {
+    color: #5d6873;
+    font-size: 0.875rem;
+    padding: 0.5rem 0;
+}
+
+@media (max-width: 480px) {
+    .att-card-header {
+        flex-direction: column;
+    }
+
+    .att-record {
+        align-items: flex-start;
+        grid-template-columns: 1fr;
+    }
+}

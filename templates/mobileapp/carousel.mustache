@@ -1,0 +1,67 @@
+{{=<% %>=}}
+<div class="block-student-attendance-mobile">
+    <%#hascards%>
+        <div class="att-mobile-carousel">
+            <%#cards%>
+                <ion-card class="att-mobile-card">
+                    <ion-card-header>
+                        <ion-card-title><% course %></ion-card-title>
+                        <ion-card-subtitle>
+                            {{ 'plugin.block_student_attendance.attendanceactivity' | translate }}: <% activity %>
+                        </ion-card-subtitle>
+                    </ion-card-header>
+
+                    <ion-card-content>
+                        <%#haspercentage%>
+                            <div class="att-mobile-percent">
+                                <strong><% percentage %>%</strong>
+                                <ion-progress-bar value="<% percentagefraction %>"></ion-progress-bar>
+                            </div>
+                        <%/haspercentage%>
+
+                        <div class="att-mobile-recorded">
+                            <strong><% recorded %></strong>
+                            <span>{{ 'plugin.block_student_attendance.sessions_recorded' | translate }}</span>
+                        </div>
+
+                        <div class="att-mobile-badges">
+                            <%#statuscounts%>
+                                <ion-badge class="<% class %>"><% label %>: <% count %></ion-badge>
+                            <%/statuscounts%>
+                        </div>
+
+                        <h3 class="att-mobile-section-title">
+                            {{ 'plugin.block_student_attendance.last5' | translate }}
+                        </h3>
+
+                        <ion-list class="att-mobile-records">
+                            <%#lastrecords%>
+                                <ion-item lines="full">
+                                    <ion-label>
+                                        <p><% date %></p>
+                                        <h3><% status %></h3>
+                                        <%#hasremarks%>
+                                            <p class="att-mobile-remark"><% remarks %></p>
+                                        <%/hasremarks%>
+                                    </ion-label>
+                                </ion-item>
+                            <%/lastrecords%>
+                        </ion-list>
+
+                        <ion-button expand="block" fill="outline" href="<% url %>">
+                            {{ 'plugin.block_student_attendance.viewattendance' | translate }}
+                        </ion-button>
+                    </ion-card-content>
+                </ion-card>
+            <%/cards%>
+        </div>
+    <%/hascards%>
+
+    <%^hascards%>
+        <ion-card class="att-mobile-empty">
+            <ion-card-content>
+                {{ 'plugin.block_student_attendance.no_attendance_data' | translate }}
+            </ion-card-content>
+        </ion-card>
+    <%/hascards%>
+</div>
